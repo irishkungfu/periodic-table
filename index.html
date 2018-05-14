@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,24 +12,30 @@
     <script src="./assets/js/main.js"></script>
 </head>
 
-<div class="periodic-table" id=periodic-table></div>
+<div class="periodic-table" id=periodic-table>
+    <div class="blank" id="col2-row1-blank"></div>
+    <div class="center-box" id="center-box"></div>
+    <div class="blank" id="col16-row1-blank"></div>
+</div>
 
 <body>
     <script>
 
         function generateElements(data) {
             for (let i = 0; i < data.elements.length; i++) {
-                let test = document.createElement("div");
-
-                test.innerHTML = `
+                if (data.elements[i].symbol != "Uue") {
+                    let test = document.createElement("div");
+                    test.innerHTML = `
                 <div class="element-parameter element-symbol">${data.elements[i].symbol}</div>
                 <div class="element-parameter element-name">${data.elements[i].name}</div>
                 <div class="element-parameter element-atomic-number">${data.elements[i].number}</div>
                 <div class="element-parameter element-rel-atomic-mass">${data.elements[i].atomic_mass.toFixed(2)}</div>
                 `;
-                test.classList.add("element-box")
-                test.setAttribute('id', i)
-                document.getElementById("periodic-table").appendChild(test);
+
+                    test.classList.add("element-box")
+                    test.setAttribute('id', `element${i + 1}`)
+                    document.getElementById("periodic-table").appendChild(test);
+                }
             }
         }
         fetch('./assets/data/periodic-table.json')
