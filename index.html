@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style></style>
+    <title>Periodic Table of Elements</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+    <script src="./assets/js/main.js"></script>
+</head>
+
+<div class="periodic-table" id=periodic-table></div>
+
+<body>
+    <script>
+
+        function generateElements(data) {
+            for (let i = 0; i < data.elements.length; i++) {
+                let test = document.createElement("div");
+
+                test.innerHTML = `
+                <div class="element-parameter element-symbol">${data.elements[i].symbol}</div>
+                <div class="element-parameter element-name">${data.elements[i].name}</div>
+                <div class="element-parameter element-atomic-number">${data.elements[i].number}</div>
+                <div class="element-parameter element-rel-atomic-mass">${data.elements[i].atomic_mass.toFixed(2)}</div>
+                `;
+                test.classList.add("element-box")
+                test.setAttribute('id', i)
+                document.getElementById("periodic-table").appendChild(test);
+            }
+        }
+        fetch('./assets/data/periodic-table.json')
+            .then(res => res.json())
+            .then((out) => {
+                generateElements(out)
+            }).catch(err => console.error(err));
+    </script>
+</body>
+
+</html>
