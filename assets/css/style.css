@@ -1,0 +1,42 @@
+body {
+  padding: 20px;
+}
+.element-box {
+  display: grid;
+  padding: 5%;
+  border: 1px solid #000;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "symbol symbol"
+    "name name"
+    "atomic-number rel-atomic-mass";
+}
+.element-symbol {
+  grid-area: symbol;
+  font-size: 3rem;
+}
+.element-name {
+  grid-area: name;
+}
+.element-atomic-number {
+  grid-area: atomic-number;
+  justify-self: start;
+  font-size: 0.6rem;
+}
+.element-rel-atomic-mass {
+  grid-area: rel-atomic-mass;
+  justify-self: end;
+  font-size: 0.6rem;
+}
+
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 20px;
+  grid-template-rows: 100px auto;
+}
+.element-parameter {
+  text-align: center;
+}
